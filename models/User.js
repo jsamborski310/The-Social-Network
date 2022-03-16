@@ -1,5 +1,5 @@
 // Define Mongoose
-const mongoose = require('mongoose');
+const { Schema, model} = require('mongoose');
 const Schema = mongoose.Schema;
 
 // or
@@ -8,18 +8,45 @@ const Schema = mongoose.Schema;
 
 // Create a new instance of the Mongoose schema to define shape of each document
 const userSchema = new mongoose.Schema({
+
+    username: {
+        type: String,
+        unique: true,
+        trim: true,
+        required: true,
+    },
+
+    email: {
+        type: String,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        match: [
+            /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+            'Please provide a valid email address.'
+        ],
+        required: [true, "Email required"]        
+    },
  
     thoughts: [
-    {
-        type: mongoose.Schema.types.ObjectId, //See class example. Might not need "mongoose"
-        ref: 'Thought'
-    }
-    
-]
-});
+        {
+            type: Schema.types.ObjectId, //See class example. Might not need "mongoose"
+            ref: 'Thought'
+        }
+    ],
+    friends: [
+        {
+            type: Schema.types.ObjectId,
+            ref: 'User'
+        }
+    ],
+},
+
+);
 
 
-const User = mongoose.model('User', userSchema);
+
+const User = model('User', userSchema);
 
 // Error handler function to be called when an error occurs when trying to save a document
 const handleError = (err) => console.error(err);
