@@ -1,29 +1,17 @@
-const router = require ('express').Router();
-const { User } = require('../../models');
+const router = require('express').Router();
+const {
+  getUsers,
+  getSingleUser,
+  createUser,
+} = require('../../controllers/userController');
 
-router.get('/', async (req, res) => {
+// /api/users
+router.route('/')
+    .get(getUsers)
+    .post(createUser);
 
-    try {
-        const userData = await User.find({});
-
-        res.json(userData);
-
-    } catch(err) {
-        res.status(500).json()
-    }
-})
-
-router.get('/:userId', async (req, res) => {
-    try {
-        const userData = await User.findById(req.params.userId);
-
-        res.json(userData);
-
-    } catch(err) {
-        res.status(500).json()
-    }
-})
-
+// /api/users/:userId
+router.route('/:userId')
+    .get(getSingleUser);
 
 module.exports = router;
-

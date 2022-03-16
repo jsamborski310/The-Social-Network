@@ -1,5 +1,5 @@
 // Define Mongoose
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 
 
 // const friendSchema = new mongoose.Schema({
@@ -7,7 +7,7 @@ const { Schema, model } = require("mongoose");
 // });
 
 // Create a new instance of the Mongoose schema to define shape of each document
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -30,14 +30,14 @@ const userSchema = new mongoose.Schema(
 
     thoughts: [
       {
-        type: Schema.types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Thought",
       },
     ],
 /////////////////
     friends: [
       {
-        type: Schema.types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
       },
     ],
