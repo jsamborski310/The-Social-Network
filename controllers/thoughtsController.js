@@ -1,27 +1,30 @@
-const User = require('../models/User');
+const Thought = require('../models/Thought');
 
 module.exports = {
 
-  // get all users
-  getUsers(req, res) {
-    User.find()
-      .then((users) => res.json(users))
+  // get all thoughts
+  getThoughts(req, res) {
+    Thought.find()
+      .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
 
-  // get single user
-  getSingleUser(req, res) {
-    User.findOne({ _id: req.params.userId })
+  // get single thought
+  getSingleThought(req, res) {
+    Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: 'No user with that ID' })
-          : res.json(user)
+      .then((thoughts) =>
+        !thoughts
+          ? res.status(404).json({ message: 'No thought with that ID' })
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
 
-  // create a new user
+
+//////////////////
+
+  // create a new thought
   createUser(req, res) {
     User.create(req.body)
       .then((dbUserData) => res.json(dbUserData))
@@ -80,5 +83,10 @@ module.exports = {
       .then((friends) => res.json(friends))
       .catch((err) => res.status(500).json(err));
   },
+
+
+
+
+
 
 };
