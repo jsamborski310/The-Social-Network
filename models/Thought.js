@@ -36,6 +36,7 @@ const thoughtSchema = new Schema({
     default: Date.now,
   },
 
+  // Should this reference the User?
   username: {
     type: String,
     required: true,
@@ -52,7 +53,7 @@ thoughtSchema.virtual('reactionCount').get(function () {
 
 // 'Thought' is the name of the model
 // thoughtSchema is the name of the schema we are using to create a new instance of the model
-const Thought = model("Thought", thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 // Error handler function to be called when an error occurs when trying to save a document
 const handleError = (err) => console.error(err);
@@ -67,14 +68,3 @@ module.exports = Thought;
 //     updatedAt: "updated_at", // and `updated_at` to store the last updated date
 //   },
 
-
-// We use the model to create individual documents that have the properties as defined in our schema
-// Item.create(
-//   {
-//     item: 'banana',
-//     stockCount: 10,
-//     price: 1,
-//     inStock: true,
-//   },
-//   (err) => (err ? handleError(err) : console.log('Created new document'))
-// );
