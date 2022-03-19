@@ -49,30 +49,32 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-///////////////////////////////////
-  // update user
-//   updateUser(req, res) {
-//     User.findOneAndUpdate(
-//         { _id: req.params.userId },
-//         { $set: req.body },
-//         { runValidators: true, new: true }
-//     )
-//       .then((dbUserData) => res.json(dbUserData))
-//       .catch((err) => res.status(500).json(err));
-//   },
+
+  // update thought
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $set: req.body },
+        { runValidators: true, new: true }
+    )
+      .then((dbThoughtData) => res.json(dbThoughtData))
+      .catch((err) => res.status(500).json(err));
+  },
   
-  
+
   // Delete a user and associated thoughts
-  // deleteUser(req, res) {
-  //   User.findOneAndDelete({ _id: req.params.userId })
-  //     .then((user) =>
-  //       !user
-  //         ? res.status(404).json({ message: 'No user with that ID' })
+  // deleteThought(req, res) {
+  //   Thought.findOneAndDelete({ _id: req.params.thoughtId })
+  //     .then((thought) =>
+  //       !thought
+  //         ? res.status(404).json({ message: 'No thought with that ID' })
   //         : Thought.deleteMany({ _id: { $in: user.thoughts } })
   //     )
-  //     .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
+  //     .then(() => res.json({ message: 'Thought deleted!' }))
   //     .catch((err) => res.status(500).json(err));
   // },
+
+  ///////////////////////////////////
 
   // create a new friend
 //   Add validation 'user not found', add friend username and email. 
