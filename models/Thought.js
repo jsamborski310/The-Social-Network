@@ -33,7 +33,7 @@ const reactionSchema = new Schema(
   }
 );
 
-// Create a new instance of the Mongoose schema to define shape of each document
+// Creates a new instance of the Mongoose schema to define shape of each document
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -49,7 +49,6 @@ const thoughtSchema = new Schema(
       get: (timestamp) => moment(timestamp).format("MMMM DD, YYYY hh:mma"),
     },
 
-    // Should this reference the User?
     username: {
       type: String,
       required: true,
