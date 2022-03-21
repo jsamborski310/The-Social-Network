@@ -1,8 +1,8 @@
-// Define Mongoose
+// Defines Mongoose
 const { Schema, Types, model } = require("mongoose");
 
 
-// Create a new instance of the Mongoose schema to define shape of each document
+// Creates a new instance of the Mongoose schema to define shape of each document
 const userSchema = new Schema(
   {
     username: {
@@ -17,6 +17,7 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       lowercase: true,
+      // REGEX to validae email address
       match: [
         /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
         "Please provide a valid email address.",
@@ -30,18 +31,16 @@ const userSchema = new Schema(
         ref: "Thought",
       },
     ],
-/////////////////
     friends: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
       },
     ],
-/////////////////
-
   },
   {
     toJSON: {
+      getters: true,
       virtual: true,
     },
     id: false,

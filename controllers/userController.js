@@ -1,18 +1,18 @@
-const User = require('../models/User');
+const { Thought, User } = require("../models");
 
 module.exports = {
 
-// populate friends?
-  // get all users
+  // Get all users
   getUsers(req, res) {
     User.find()
+      .select('-__v')
       .populate('friends')
       .populate('thoughts')
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
 
-  // get single user
+  // Get single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -26,14 +26,14 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // create a new user
+  // Create a new user
   createUser(req, res) {
     User.create(req.body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(500).json(err));
   },
 
-  // update user
+  // Update user
   updateUser(req, res) {
     User.findOneAndUpdate(
         { _id: req.params.userId },
@@ -51,14 +51,13 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
-          : Thought.deleteMany({ _id: { $in: user.thoughts } })
+          : Thought.deleteMany({ _id: { $in: User.thoughts } })
       )
       .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
 
-  // create a new friend
-//   Add validation 'user not found', add friend username and email. 
+  // Create a new friend 
   createFriend(req, res) {
     User.findOneAndUpdate(
         { _id: req.params.userId },
