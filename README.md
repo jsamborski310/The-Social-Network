@@ -74,6 +74,10 @@ Displays POST and DELETE routes for Friends and Reactions.
 
 GitHub Repo: https://github.com/jsamborski310/The-Social-Network
 
+Walkthrough Video 1: https://www.loom.com/share/e739537cd4024d25838a9a89287d25be
+
+Walkthrough Video 2: https://www.loom.com/share/76fc8ffe50c04968bbc960e5013c4ba5
+
 ## Questions
 
 For questions about this application or if you would like to collaborate, connect with me on <a href="https://www.linkedin.com/in/juanita-samborski/" target="_blank">Linkedin</a>.
