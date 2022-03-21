@@ -110,7 +110,14 @@ module.exports = {
       },
       { runValidators: true, new: true }
     )
-      .then((reaction) => res.json(reaction))
+      .then((reaction) => {
+        if (!reaction) {
+          res.status(404).json({ message: 'No reaction found with this id' })
+          return;
+        }
+      
+      res.json({message: 'Successfully deleted the reaction'})
+      })
       .catch((err) => res.status(500).json(err));
   },
 };

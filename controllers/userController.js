@@ -82,7 +82,13 @@ module.exports = {
         },
         { runValidators: true, new: true }
     )
-      .then((friends) => res.json(friends))
+      .then((friends) => {
+        if (!friends) {
+          res.status(404).json({message: 'No friend found with this id'})
+          return;
+        }
+        res.json({message: 'Successfully removed this friend.'})
+      })
       .catch((err) => res.status(500).json(err));
   },
 
