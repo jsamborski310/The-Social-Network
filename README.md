@@ -51,14 +51,24 @@ To start the application, run the following code in the terminal:
 This application is covered under the MIT license.
 
 
-### Application Screenshots
+### Application Preview
 
-Preview screens of the application. 
+Preview of the application in action. 
 
-#### HOMEPAGE
-![Screen shot of homepage, displaying all posts.](/public/images/homepage.png)
+#### USER ROUTES
+Displays GET, POST, PUT and DELETE routes for Users.
 
+![Gif displaying user routes in action.](/assets/user-routes.gif)
 
+#### THOUGHT ROUTES
+Displays GET, POST, PUT and DELETE routes for Thoughts.
+
+![Gif displaying thought routes in action.](/assets/thought-routes.gif)
+
+#### FRIEND & REACTION ROUTES
+Displays POST and DELETE routes for Friends and Reactions.
+
+![Gif displaying friend and reaction routes in action.](/assets/friend-reaction-routes.gif)
 
 ## Preview
 
